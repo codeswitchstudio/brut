@@ -1,9 +1,9 @@
 import { redirectToAuthCodeFlow } from "../../auth"
 
 
-const Nav = () => {
+const Nav = ({ profile }) => {
 
-	const clientId = import.meta.env.CLIENT_ID;
+	const clientId = import.meta.env.VITE_CLIENT_ID;
 
 	const handleClick = async () => {
 		await redirectToAuthCodeFlow(clientId)
@@ -11,14 +11,14 @@ const Nav = () => {
 
 	return (
 		<>
-		<nav>
+		
 			<h1>Brut</h1>
-			
+			{!profile ? (
 			<button onClick={handleClick}>				
-				
 				Login</button>
-
-		</nav>
+			) :	(
+				<img src={profile}> </img>
+			)} 
 		</>
 	)
 }
